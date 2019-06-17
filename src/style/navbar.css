@@ -1,0 +1,14 @@
+#navBar {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 7fr;
+    background-color: rgb(110, 104, 104);
+    padding: 1.5%;
+}
+
+#navBar>a {
+    text-decoration: none;
+    color: #f9ca24;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}

@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import HomePage from './components/HomePage';
 import './App.css';
-
+import Navbar from './components/Navbar';
+import M from "materialize-css";
 
 @inject("generalStore")
 @observer
@@ -11,17 +13,28 @@ class App extends Component {
 
   componentDidMount = async () => {
 
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.carousel');
+      var instances = M.Carousel.init(elems);
+    })
+
     await this.props.generalStore.getProductsFromDB()
     console.log(this.props.generalStore.products)
   }
 
-  render () {
+  render() {
 
     return (
-      
-      <HomePage/>
+      <Router>
+      <div id="app">
 
-    ) 
+        <Navbar />
+        <HomePage />
+
+      </div>
+      </Router>
+
+    )
 
   }
 }
