@@ -14,7 +14,7 @@ router.get('/sanity', function (req, res) {
 })
 
 router.get('/products', async function (req, res) {
-    let products = await getproductsFromDB()
+    let products = await getProductsFromDB()
     res.send(products)
 })
 
@@ -29,6 +29,6 @@ const saveProduct = function () {
 }
 
 
-saveProduct()
+// saveProduct()
 
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { observer, inject } from 'mobx-react';
+import HomePage from './components/HomePage';
+import './App.css';
 
 
 @inject("generalStore")

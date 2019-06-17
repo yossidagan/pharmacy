@@ -11,8 +11,9 @@ export class GeneralStore {
     @observable products = []
 
 
-    @action getproductsFromDB = async () => {
+    @action getProductsFromDB = async () => {
         let products = await axios.get(`${API_URL}/products`)
+        console.log(products)
         this.products = products.data
     }
     
