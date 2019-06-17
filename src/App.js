@@ -10,6 +10,7 @@ import './App.css';
 class App extends Component {
 
   componentDidMount = async () => {
+
     await this.props.generalStore.getProductsFromDB()
     console.log(this.props.generalStore.products)
   }
