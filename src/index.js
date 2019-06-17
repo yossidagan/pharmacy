@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import { Provider } from 'mobx-react'
 import * as serviceWorker from './serviceWorker';
-import { GeneralStore } from './GeneralStore';
-
+import { GeneralStore } from './stores/GeneralStore';
 
 const generalStore = new GeneralStore()
 
