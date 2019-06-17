@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import Carousel from './Carousel';
+import ProductCarousel from './ProductCarousel';
 
 @inject("generalStore")
 @observer
@@ -12,7 +12,7 @@ class HomePage extends Component {
 
         return (
             <div>
-                <Carousel/>
+                <ProductCarousel/>
             </div>
         );
     }
