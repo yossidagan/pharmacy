@@ -1,8 +1,7 @@
 
 import React, { Component } from "react";
-import "../../css/popUp.css"
 import axios from 'axios';
-import "../style/cart-modal.css"
+import "../style/CartModal.css"
 
 
 
@@ -29,20 +28,14 @@ class CartModal extends Component {
 
     }
 
-    let response = await axios.put(`/updateClientPopUp/`, clientData)
-    this.props.getDataFromDB()
 
   }
 
   componentDidMount = () => {
 
-    let clientName = this.props.clientData.name.split(" ")
 
     this.setState({
-      name: clientName[0],
-      surName: clientName[1],
-      country: this.props.clientData.country,
-      id: this.props.clientData.id
+     
     })
   }
 

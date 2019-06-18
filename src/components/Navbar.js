@@ -9,9 +9,9 @@ class Navbar extends Component {
 
             <div id="navBar">
 
-            <Link to="/">Clients</Link>
-            <Link to="/actions">Actions</Link>
-            <Link to="/analytics">Analytics</Link>
+            <Link to="/">HOME</Link>
+            <Link to="/actions">CATEGORIES</Link>
+            <Link to="/analytics">CART</Link>
 
         </div>
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
-import ProductCarousel from './ProductCarousel';
-
-@inject("generalStore")
-@observer
+import "../style/HomePage.css"
+import Carousel from './Carousel';
 
 class HomePage extends Component {
 
@@ -11,8 +8,8 @@ class HomePage extends Component {
 
 
         return (
-            <div>
-                <ProductCarousel/>
+            <div id="homePage">
+                <Carousel />
             </div>
         );
     }
