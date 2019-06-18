@@ -1,0 +1,15 @@
+#products {
+    display: grid ;
+    grid-template-columns : repeat(3, 1fr) ;
+    grid-gap: 4%;
+    justify-items: center
+}
+
+#headline {
+    display: grid ;
+    justify-content: center ;
+    padding-top: 5%;
+    font-size: 28px;
+    font-weight: bold ;
+    margin-bottom: 4%;
+}

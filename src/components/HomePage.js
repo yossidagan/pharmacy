@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "../style/HomePage.css"
 import Carousel from './Carousel';
+import Products from './Products';
 
 class HomePage extends Component {
 
@@ -10,6 +11,7 @@ class HomePage extends Component {
         return (
             <div id="homePage">
                 <Carousel />
+                <Products />
             </div>
         );
     }

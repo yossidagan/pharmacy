@@ -4,6 +4,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import { observer, inject } from 'mobx-react';
 import CartModal from "./CartModal";
 // import data from "../data.json"
+import "../style/Carousel.css"
 
 @inject("generalStore")
 @observer
@@ -50,7 +51,8 @@ class Carousel extends Component {
   };
   render() {
     return (
-      <div>
+      <div id="carousel">
+        <div id="headline">Most Popular Right Now</div>
         <div
           ref={Carousel => {
             this.Carousel = Carousel;
@@ -59,9 +61,7 @@ class Carousel extends Component {
         >
           {this.renderThis()}
         </div>
-
-        {/* {this.showModal ? <CartModal /> : null} */}
-
+        
       </div>
 
     )

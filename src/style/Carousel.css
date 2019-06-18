@@ -1,0 +1,7 @@
+#headline {
+    display: grid ;
+    justify-content: center ;
+    padding-top: 5%;
+    font-size: 28px;
+    font-weight: bold ;
+}

@@ -1,4 +1,6 @@
-#App {
+#app {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ecf0f1;
 
 
 }
@@ -9,20 +11,6 @@
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -33,29 +21,3 @@
   }
 }
 
-
-#addBtn {
-  display: grid;
-  width: 200px;
-  height: 30px;
-  margin-top: 15px;
-  justify-content: center;
-  align-content: center;
-  background-color: #f9ca24;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-#carousel {
-  /* height: 10%; */
-  width: 40% ;
-}
-
-.item {
-  height: 250px;
-  /* width: 60% ; */
-}
-
-.slick-slider {
-  width : 60%;
-}
