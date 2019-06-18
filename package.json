@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/core": "7.4.3",
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@material-ui/core": "^4.1.1",
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
@@ -54,6 +55,7 @@
     "postcss-safe-parser": "4.0.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
+    "react-cart-components": "^2.0.5",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
     "react-responsive-carousel": "^3.1.49",
