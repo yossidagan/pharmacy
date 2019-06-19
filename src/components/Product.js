@@ -9,22 +9,29 @@ import "../style/Product.css"
 
 class Product extends Component {
 
+    addToCart = () => {
+        let product = this.props.product
+        let generalStore = this.props.generalStore
+
+        generalStore.addToCart(product._id)
+    }
 
     render() {
-        let p = this.props.product
-        console.log(p)
+        let product = this.props.product
+        
         return (
             <div id="product">
                 <div className="card" >
                     <div className="card-image">
-                        <img src={p.pic} />
-                        <span className="card-title">{p.name}</span>
-                        <span to="/" className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></span>
+                        <img src={product.pic} />
+                        <span className="card-title">{product.name}</span>
+                        <span to="/" className="btn-floating halfway-fab waves-effect waves-light red"
+                            onClick={this.addToCart}><i className="material-icons">add</i></span>
                     </div>
 
                     <div className="card-content">
-                        <p>{p.desc}</p>
-                        <p><b>Price: {p.price}$</b></p>
+                        <p>{product.desc}</p>
+                        <p><b>Price: {product.price}$</b></p>
                     </div>
                 </div>            </div>
         );

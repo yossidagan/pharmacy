@@ -9,8 +9,9 @@ import "../style/Products.css"
 
 class Products extends Component {
     render() {
-        const generalStore = this.props.generalStore
-        console.log(generalStore.products)
+        
+        let generalStore = this.props.generalStore
+
         return (
             <div>
                 <div id="headline">Our Products</div>
