@@ -5,6 +5,7 @@ import HomePage from './components/HomePage';
 import './App.css';
 import Navbar from './components/Navbar';
 import M from "materialize-css";
+import ShoppingCart from './components/ShoppingCart';
 
 @inject("generalStore")
 @observer
@@ -29,7 +30,9 @@ class App extends Component {
       <div id="app">
 
         <Navbar />
-        <HomePage />
+        <Route exact path='/' render={() => <HomePage />} />
+        <Route exact path='/cart' render={() => <ShoppingCart />} />
+
 
       </div>
       </Router>
