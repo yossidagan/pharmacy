@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const path = require("path");
 const Product = require("../model/Product")
 const nodemailer = require('nodemailer')
+const sendmail = require('sendmail')();
+
 
 const products = require('../data')
 
@@ -22,6 +24,7 @@ router.get('/products', async function (req, res) {
 router.post('/sendMail', async function (req, res) {
     console.log(req.body)
 
+
     nodemailer.createTestAccount((err, account) => {
 
         const htmlMail = `
@@ -29,15 +32,36 @@ router.post('/sendMail', async function (req, res) {
         <div>Sender Age : ${req.body.age}</div>
         `
 
-        let transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.ethereal.email',
             port: 587,
             auth: {
-              user: testAccount.user, // generated ethereal user
-              pass: testAccount.pass // generated ethereal password
+                user: 'milford.gislason@ethereal.email',
+                pass: 'w2CpChbETV6SC7zbJU'
+            },
+            tls:{
+                rejectUnauthorized:false
+              }
+        });
+
+        let mailOptions = {
+            from: "test@testaccount.com",
+            to: 'milford.gislason@ethereal.email',
+            subject: 'Node Contact Request', // Subject line
+            text: 'Hello world?', // plain text body
+            html: htmlMail // html body
+        };
+      
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
             }
-          })
-          
+            console.log('Message sent: %s', info.messageId);   
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    
+        });
+
 
     });
 
