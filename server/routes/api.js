@@ -25,7 +25,6 @@ router.post('/sendMail', async function (req, res) {
     console.log(req.body)
 
 
-    nodemailer.createTestAccount((err, account) => {
 
         const htmlMail = `
         <div>Sender Text : ${req.body.text}</div>
@@ -33,11 +32,10 @@ router.post('/sendMail', async function (req, res) {
         `
 
         const transporter = nodemailer.createTransport({
-            host: 'smtp.ethereal.email',
-            port: 587,
+            service : 'gmail',
             auth: {
-                user: 'milford.gislason@ethereal.email',
-                pass: 'w2CpChbETV6SC7zbJU'
+                user: 'daganyy@gmail.com',
+                pass: 'Drumcode29'
             },
             tls:{
                 rejectUnauthorized:false
@@ -45,8 +43,7 @@ router.post('/sendMail', async function (req, res) {
         });
 
         let mailOptions = {
-            from: "test@testaccount.com",
-            to: 'milford.gislason@ethereal.email',
+            to: "daganyy@gmail.com",
             subject: 'Node Contact Request', // Subject line
             text: 'Hello world?', // plain text body
             html: htmlMail // html body
@@ -58,12 +55,11 @@ router.post('/sendMail', async function (req, res) {
                 return console.log(error);
             }
             console.log('Message sent: %s', info.messageId);   
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     
         });
 
 
-    });
+    
 
 
 })
