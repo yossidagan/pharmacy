@@ -10,7 +10,7 @@ class HomePage extends Component {
 
         return (
             <div id="homePage">
-                <Carousel />
+                {/* <Carousel /> */}
                 <Products />
             </div>
         );

@@ -3,7 +3,10 @@ const Schema = mongoose.Schema
 
 const productSchema = new Schema({
     name: String,
-    price : Number,
+    desc: String,
+    price: Number,
+    isTopProduct: Boolean,
+    quantity: Number,
     pic: String
 })
 
