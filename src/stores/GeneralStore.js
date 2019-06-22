@@ -4,7 +4,7 @@ import {
     computed
 } from 'mobx'
 import axios from '../../node_modules/axios/dist/axios'
-import { throwStatement } from '@babel/types';
+import { throwStatement, awaitExpression } from '@babel/types';
 
 const API_URL = 'http://localhost:8000'
 
@@ -17,7 +17,7 @@ export class GeneralStore {
     @observable shippingCost = 6
     @observable includeShipping = false
 
-    
+
     @computed get calcCartTotal() {
 
         let cartTotal = 0
@@ -57,15 +57,26 @@ export class GeneralStore {
 
         if (action == "add") {
             chosenProduct.quantity++
-            this.cartTotal += chosenProduct.price
+            console.log(chosenProduct.quantity)
+            this.cartTotal = chosenProduct.quantity * chosenProduct.price
         }
         if (action == "subtract") {
             chosenProduct.quantity--
-            cartTotal -= chosenProduct.price
+            this.cartTotal = chosenProduct.quantity * chosenProduct.price
         }
         if (action == "remove") {
+            chosenProduct.quantity = 1
             cartItems.splice(chosenProductIndex, 1)
+            if (!this.cartItems.length) {
+                this.cartTotal = 0
+            }
         }
+    }
+
+    @action sendMail = async (message) => {
+        console.log(message)
+        await axios.post(`${API_URL}/sendMail`, message)
+
     }
 }
 

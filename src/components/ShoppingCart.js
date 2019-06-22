@@ -7,7 +7,17 @@ import "../style/ShoppingCart.css"
 @observer
 class ShoppingCart extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            message: {text : "this is a test message", age: 30 },
+            isPurchaseComplete: false
+        }
+    }
+
     toggleShipping = () => this.props.generalStore.includeShipping = !this.props.generalStore.includeShipping
+    toggleCheckout = () => this.setState({ isPurchaseComplete: true })
+    sendMail = () => this.props.generalStore.sendMail(this.state.message)
 
     render() {
 
@@ -20,7 +30,7 @@ class ShoppingCart extends Component {
                     <ul className="collection">
 
                         {generalStore.cartItems.map(item =>
-                            <li className="collection-item avatar" key={item.id}>
+                            <li className="collection-item avatar" key={item._id}>
                                 <div className="item-img">
                                     <img src={item.pic} alt={item.pic} className="" />
                                 </div>
@@ -53,13 +63,13 @@ class ShoppingCart extends Component {
                             <li className="collection-item"><b>Total: {generalStore.calcCartTotal} $</b></li>
                         </div>
                         <div className="checkout">
-                            <button className="waves-effect waves-light btn">Checkout</button>
+                            <button className="waves-effect waves-light btn" onClick={this.toggleCheckout}>Checkout</button>
                         </div>
                     </div>
-                </div> : <h3>Nothing.</h3>
-
-
-                }
+                </div> : <h3>Nothing.</h3>}
+                {this.state.isPurchaseComplete ?
+                    <button className="waves-effect waves-light btn" onClick={this.sendMail}>Send confirmation mail</button>
+                    : null}
             </div>
         );
     }
