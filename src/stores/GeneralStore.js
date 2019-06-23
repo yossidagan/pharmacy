@@ -17,6 +17,7 @@ export class GeneralStore {
     @observable cartTotal = 0
     @observable shippingCost = 6
     @observable includeShipping = false
+    @observable currentUser = JSON.parse(sessionStorage.getItem('login')) || {}
 
 
     @computed get calcCartTotal() {
@@ -95,6 +96,6 @@ export class GeneralStore {
         this.currentUser = user
         sessionStorage.setItem('login', JSON.stringify(user));
     }
-    
+
 }
 

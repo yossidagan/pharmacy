@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 // import MenuIcon from '@material-ui/icons/Menu';
 
-const useStyles = makeStyles(theme => ({    
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -31,16 +31,18 @@ export default function ButtonAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
           </IconButton>
           <Link to="/">
-          <Button color="inherit">Home</Button>        
+            <Button color="inherit">Home</Button>
           </Link>
           <Link to="/cart">
-          <Button color="inherit">Cart</Button>
+            <Button color="inherit">Cart</Button>
           </Link>
           <Link to="/login">
-          <Button color="inherit">Login</Button>
+            {/* <Button color="inherit">Login</Button> */}
+            <Button color="inherit">{sessionStorage.login ? "LOGOUT" : "LOGIN"}</Button>
+
           </Link>
           <Link to="/profile">
-          <Button color="inherit">Profile</Button>
+            <Button color="inherit">Profile</Button>
           </Link>
 
         </Toolbar>
