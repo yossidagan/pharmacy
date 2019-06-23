@@ -1,44 +1,61 @@
 import React, { Component } from 'react';
-import "../style/Login.css"
+import '../style/Login.css';
+import { observer, inject } from 'mobx-react';
+import validator from 'validator'
 
+
+
+@inject("generalStore")
+@observer
 class Login extends Component {
+    constructor() {
+        super()
+        this.state = {
+            email: "",
+            password: "",
+            invalidLogin: false
+        }
+    }
+
+    handleInput = e => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    changeLogin = () => {
+        this.props.changeLogin()
+    }
+
+    checkLogin = () => {
+        let generalStore = this.props.generalStore
+        let user = generalStore.checkLogin(this.state.email, this.state.password)
+        console.log(user)
+
+        if (user) {
+            generalStore.changeCurrentUser(user)
+            window.location = "http://localhost:3000/home"
+        } else {
+            this.setState({ invalidLogin: true })
+        }
+    }
+
     render() {
         return (
-
-            <div>
-                <div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown link
-  </a>
-
-                    <div class="dropdown-menu">
-                        <form class="px-4 py-3">
-                            <div class="form-group">
-                                <label for="exampleDropdownFormEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" />
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password" />
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="dropdownCheck" />
-                                <label class="form-check-label" for="dropdownCheck">
-                                    Remember me
-        </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">New around here? Sign up</a>
-                        <a class="dropdown-item" href="#">Forgot password?</a>
+            <div id="landing">
+                <div id="login">
+                    <div id="loginForm">
+                        <input className="login-form" type="email" placeholder="Enter Email" name="email" onChange={this.handleInput} />
+                        <input className="login-form" type="password" placeholder="Enter Password" name="password" onChange={this.handleInput} />
+                    </div>
+                    <div id="loginButton" onClick={this.checkLogin} >LOG IN</div>
+                    {this.state.invalidLogin ?
+                        <div className="error">Wrong Email or Password</div> :
+                        null}
+                    <div id="navigateToRegister">
+                        <div id="registerLink" onClick={this.changeLogin}>Not a member? Sign Up</div>
                     </div>
                 </div>
-
             </div>
-
-        )
+        );
     }
 }
 

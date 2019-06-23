@@ -22,6 +22,8 @@ class App extends Component {
     })
 
     await this.props.generalStore.getProductsFromDB()
+    await this.props.generalStore.getUsersFromDB()
+
     console.log(this.props.generalStore.products)
   }
 

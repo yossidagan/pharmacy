@@ -12,6 +12,7 @@ export class GeneralStore {
 
 
     @observable products = []
+    @observable users = []
     @observable cartItems = []
     @observable cartTotal = 0
     @observable shippingCost = 6
@@ -37,6 +38,11 @@ export class GeneralStore {
         this.products = productsFromDB.data
     }
 
+    @action getUsersFromDB = async () => {
+        let users = await axios.get(`${API_URL}/users`)
+        this.users = users.data
+        console.log(this.users)
+    }
 
     @action addToCart = id => {
 
@@ -78,5 +84,17 @@ export class GeneralStore {
         await axios.post(`${API_URL}/sendMail`, message)
 
     }
+
+    @action checkLogin = (email, password) => {
+        let user = this.users.find(u => (u.email === email) && (u.password === password))
+        return user ? user : null
+    }
+
+    @action changeCurrentUser = user => {
+        console.log(user)
+        this.currentUser = user
+        sessionStorage.setItem('login', JSON.stringify(user));
+    }
+    
 }
 
