@@ -36,6 +36,12 @@ export default function ButtonAppBar() {
           <Link to="/cart">
           <Button color="inherit">Cart</Button>
           </Link>
+          <Link to="/login">
+          <Button color="inherit">Login</Button>
+          </Link>
+          <Link to="/profile">
+          <Button color="inherit">Profile</Button>
+          </Link>
 
         </Toolbar>
       </AppBar>
