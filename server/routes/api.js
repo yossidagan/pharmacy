@@ -27,10 +27,10 @@ cloudinary.config({ cloud_name: process.env.CLOUD_NAME, api_key: process.env.API
 const storage = cloudinaryStorage({ cloudinary: cloudinary, folder: "demo", allowedFormats: ["jpg", "png"] });
 const parser = multer({ storage: storage });
 
-router.post('/api/images', parser.single("image"), (req, res) => {
-    console.log("ok")
-    console.log(req.file)
-})
+// router.post('/api/images', parser.single("image"), (req, res) => {
+//     console.log("ok")
+//     console.log(req.file)
+// })
 
 
 router.get('/sanity', function (req, res) {
@@ -53,8 +53,8 @@ router.post('/sendMail', async function (req, res) {
 
 
     const htmlMail = `
-        <div>Sender Text : ${req.body.text}</div>
-        <div>Sender Age : ${req.body.age}</div>
+        <div>${req.body.message.text}</div>
+        <div>Developer Note : ${req.body.message.devNote}</div>
         `
 
     const transporter = nodemailer.createTransport({
@@ -69,7 +69,7 @@ router.post('/sendMail', async function (req, res) {
     });
 
     let mailOptions = {
-        to: "daganyy@gmail.com",
+        to: req.body.email,
         subject: 'Node Contact Request', // Subject line
         text: 'Hello world?', // plain text body
         html: htmlMail // html body

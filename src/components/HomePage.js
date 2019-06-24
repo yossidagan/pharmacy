@@ -16,8 +16,8 @@ class HomePage extends Component {
 
         return (
             <div id="homePage">
-                {sessionStorage.login ?
-                    <div>Welcome Back,{loggedUser.firstName}!</div> : null}
+                {/* {sessionStorage.login ?
+                    <div>Welcome Back,{loggedUser.firstName}!</div> : null} */}
                 {/* <Carousel /> */}
                 <Products />
             </div>

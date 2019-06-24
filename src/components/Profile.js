@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import firebase from "firebase"
 import FileUploader from "react-firebase-file-uploader"
+import { observer, inject } from 'mobx-react';
+import "../style/Profile.css"
+
 
 const config = {
     apiKey: "AIzaSyCjqCVuupOwPA817kGFYCIC4Chlj7IYpkw",
@@ -10,8 +13,12 @@ const config = {
     storageBucket: "pharmacy-5c136.appspot.com",
     messagingSenderId: "988721806507",
     appId: "1:988721806507:web:d0a177d820d91088"
-  };
+};
 firebase.initializeApp(config);
+
+
+@inject("generalStore")
+@observer
 
 class Profile extends Component {
     state = {
@@ -22,14 +29,14 @@ class Profile extends Component {
         avatarURL: ""
     };
 
-    handleChangeUsername = event =>
-        this.setState({ username: event.target.value });
     handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
     handleProgress = progress => this.setState({ progress });
+
     handleUploadError = error => {
         this.setState({ isUploading: false });
         console.error(error);
     };
+
     handleUploadSuccess = filename => {
         this.setState({ avatar: filename, progress: 100, isUploading: false });
         firebase
@@ -37,34 +44,42 @@ class Profile extends Component {
             .ref("images")
             .child(filename)
             .getDownloadURL()
-            .then(url => this.setState({ avatarURL: url }));
+            .then(url => this.props.generalStore.currentUser.pic = url);
     };
 
     render() {
+        console.log(this.state.avatarURL)
+        let generalStore = this.props.generalStore
+
         return (
             <div>
-                <form>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={this.state.username}
-                        name="username"
-                        onChange={this.handleChangeUsername}
-                    />
-                    <label>Avatar:</label>
-                    {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-                    {this.state.avatarURL && <img src={this.state.avatarURL} />}
-                    <FileUploader
-                        accept="image/*"
-                        name="avatar"
-                        randomizeFilename
-                        storageRef={firebase.storage().ref("images")}
-                        onUploadStart={this.handleUploadStart}
-                        onUploadError={this.handleUploadError}
-                        onUploadSuccess={this.handleUploadSuccess}
-                        onProgress={this.handleProgress}
-                    />
-                </form>
+                <ul class="collection">
+                    <li className="collection-item avatar">
+                        <img className="profilePic" src={generalStore.currentUser.pic} alt="" class="circle" />
+                        <span class="title">{generalStore.currentUser.firstName}</span>
+                    </li>
+                    <li class="collection-item">Email : {generalStore.currentUser.email}</li>
+                    <li class="collection-item">
+                        <form>
+                            Upload Profile Pic 
+                            <br></br>
+                            <br></br>
+                            {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+                            {this.state.avatarURL && <img src={this.state.avatarURL} />}
+                            <FileUploader
+                                accept="image/*"
+                                name="avatar"
+                                randomizeFilename
+                                storageRef={firebase.storage().ref("images")}
+                                onUploadStart={this.handleUploadStart}
+                                onUploadError={this.handleUploadError}
+                                onUploadSuccess={this.handleUploadSuccess}
+                                onProgress={this.handleProgress}
+                            />
+                        </form>
+                    </li>
+                </ul>
+
             </div>
         );
     }

@@ -80,9 +80,9 @@ export class GeneralStore {
         }
     }
 
-    @action sendMail = async (message) => {
-        console.log(message)
-        await axios.post(`${API_URL}/sendMail`, message)
+    @action sendMail = async (mailObj) => {
+        console.log(mailObj)
+        await axios.post(`${API_URL}/sendMail`, mailObj)
 
     }
 

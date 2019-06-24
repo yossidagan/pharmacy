@@ -10,14 +10,23 @@ class ShoppingCart extends Component {
     constructor() {
         super()
         this.state = {
-            message: {text : "this is a test message", age: 30 },
-            isPurchaseComplete: false
+            message: { text: "Thank you for your purchase!",
+            devNote : "--this would be updated to the order details with nice look soon" },
+            isPurchaseComplete: false,
+            inputEmail: ""
         }
     }
 
     toggleShipping = () => this.props.generalStore.includeShipping = !this.props.generalStore.includeShipping
     toggleCheckout = () => this.setState({ isPurchaseComplete: true })
-    sendMail = () => this.props.generalStore.sendMail(this.state.message)
+    sendMail = () => {
+        let mailObj = {
+            message : this.state.message, 
+            email : this.state.inputEmail
+        }
+        this.props.generalStore.sendMail(mailObj)
+    }
+    handleInput = e => this.setState({ inputEmail: e.target.value })
 
     render() {
 
@@ -58,6 +67,11 @@ class ShoppingCart extends Component {
                                 <label>
                                     <input type="checkbox" ref="shipping" onChange={this.toggleShipping} />
                                     <span>Shipping(+6$)</span>
+                                    <br></br>
+                                    <br></br>
+                                    <span style={{ fontSize: "15px" }}>Conformation Email To :</span>
+                                    <input type="text" onChange={this.handleInput}
+                                        placeholder="Conformation Mail To" />
                                 </label>
                             </li>
                             <li className="collection-item"><b>Total: {generalStore.calcCartTotal} $</b></li>
@@ -66,7 +80,8 @@ class ShoppingCart extends Component {
                             <button className="waves-effect waves-light btn" onClick={this.toggleCheckout}>Checkout</button>
                         </div>
                     </div>
-                </div> : <h3>Nothing.</h3>}
+
+                </div> : <li className="collection-item">Your Cart Is Empty</li>}
                 {this.state.isPurchaseComplete ?
                     <button className="waves-effect waves-light btn" onClick={this.sendMail}>Send confirmation mail</button>
                     : null}

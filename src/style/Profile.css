@@ -1,0 +1,22 @@
+.profilePic {
+    
+}
+.collection .collection-item.avatar .title {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.avatar {
+    display: grid ; 
+    grid-template-columns: 1fr 1fr 9fr ;
+
+}
+.avatar > img{
+    display: grid ; 
+    grid-template-columns: 1fr 1fr 9fr ;
+    
+}
+
+li {
+    font-weight: bold ;
+}

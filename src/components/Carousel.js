@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import { observer, inject } from 'mobx-react';
-import CartModal from "./CartModal";
 // import data from "../data.json"
 import "../style/Carousel.css"
 
