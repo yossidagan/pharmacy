@@ -1,7 +1,7 @@
 const products = [
     {
         name: "Garnier Daily Face Wash",
-        desc: "A great Refresher Every Morning",
+        desc: "A Great Refresher Every Morning",
         pic: "https://i.imgur.com/f3w1GG5.jpg",
         isTopProduct: true,
         quantity: 1,

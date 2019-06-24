@@ -3,10 +3,9 @@ import '../style/Login.css';
 import { observer, inject } from 'mobx-react';
 import validator from 'validator'
 
-
-
 @inject("generalStore")
 @observer
+
 class Login extends Component {
     constructor() {
         super()
@@ -21,8 +20,13 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    changeLogin = () => {
-        this.props.changeLogin()
+    // changeLogin = () => {
+    //     this.props.changeLogin()
+    // }
+
+    logOut = () => {
+        sessionStorage.removeItem('login')
+        window.location = "http://localhost:3000"
     }
 
     checkLogin = () => {
@@ -38,23 +42,33 @@ class Login extends Component {
         }
     }
 
+
     render() {
         return (
-            <div id="landing">
-                <div id="login">
-                    <div id="loginForm">
-                        <input className="login-form" type="email" placeholder="Enter Email" name="email" onChange={this.handleInput} />
-                        <input className="login-form" type="password" placeholder="Enter Password" name="password" onChange={this.handleInput} />
+            <div>
+                {sessionStorage.login ?
+                    <button onClick={this.logOut} className="waves-effect waves-light btn pink remove">Logout</button> :
+                    <div id="landing">
+                        <div id="login">
+                            <div id="loginForm">
+                                <input className="login-form" type="email" placeholder="Enter Email" name="email" onChange={this.handleInput} />
+                                <input className="login-form" type="password" placeholder="Enter Password" name="password" onChange={this.handleInput} />
+                            </div>
+                            <div id="loginButton" onClick={this.checkLogin} >LOG IN</div>
+                            {this.state.invalidLogin ?
+                                <div className="error">Wrong Email or Password</div> :
+                                null}
+                            <div id="navigateToRegister">
+                                <div id="registerLink" onClick={this.changeLogin}>Not a member? Sign Up</div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="loginButton" onClick={this.checkLogin} >LOG IN</div>
-                    {this.state.invalidLogin ?
-                        <div className="error">Wrong Email or Password</div> :
-                        null}
-                    <div id="navigateToRegister">
-                        <div id="registerLink" onClick={this.changeLogin}>Not a member? Sign Up</div>
-                    </div>
-                </div>
+
+                }
+
+
             </div>
+
         );
     }
 }

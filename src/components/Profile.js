@@ -55,11 +55,11 @@ class Profile extends Component {
             <div>
                 <ul class="collection">
                     <li className="collection-item avatar">
-                        <img className="profilePic" src={generalStore.currentUser.pic} alt="" class="circle" />
-                        <span class="title">{generalStore.currentUser.firstName}</span>
+                        <img className="profilePic" src={generalStore.currentUser.pic} />
+                        <span className="title">{generalStore.currentUser.firstName}</span>
                     </li>
-                    <li class="collection-item">Email : {generalStore.currentUser.email}</li>
-                    <li class="collection-item">
+                    <li className="collection-item">Email : {generalStore.currentUser.email}</li>
+                    <li className="collection-item">
                         <form>
                             Upload Profile Pic 
                             <br></br>

@@ -1,4 +1,13 @@
-#homePage { 
+/* #homePage { 
     display: grid ; 
     grid-template-rows: 1fr 3fr ;
+} */
+
+.welcome {
+font-size: 230%;
+display: grid ;
+justify-items: center ;
+padding-bottom: 0%;
+margin-top: 3%;
+
 }
