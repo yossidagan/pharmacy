@@ -39,9 +39,6 @@ class App extends Component {
           <Route exact path='/login' render={() => <Login />} />
           <Route exact path='/profile' render={() => <Profile />} />
 
-
-
-
         </div>
       </Router>
 
